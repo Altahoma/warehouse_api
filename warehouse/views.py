@@ -4,7 +4,7 @@ from warehouse.models import Product
 from warehouse.serializers import ProductSerializer
 
 
-class ProductList(generics.ListAPIView):
+class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
