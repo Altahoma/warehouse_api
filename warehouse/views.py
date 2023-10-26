@@ -1,14 +1,16 @@
-from rest_framework import generics, mixins
+from rest_framework import generics, mixins, viewsets
 
 from warehouse.models import Product
 from warehouse.serializers import ProductSerializer
 
 
-class ProductList(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+class ProductViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
