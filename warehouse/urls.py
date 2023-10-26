@@ -1,25 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from warehouse.views import ProductViewSet
 
-product_list = ProductViewSet.as_view(
-    actions={
-        "get": "list",
-        "post": "create",
-    }
-)
-product_detail = ProductViewSet.as_view(
-    actions={
-        "get": "retrieve",
-        "put": "update",
-        "patch": "partial_update",
-        "delete": "destroy",
-    }
-)
+router = routers.DefaultRouter()
+router.register("products", ProductViewSet)
+
 
 urlpatterns = [
-    path("products/", product_list, name="product-list"),
-    path("products/<int:pk>/", product_detail, name="product-detail"),
+    path("", include(router.urls)),
 ]
 
 app_name = "warehouse"
