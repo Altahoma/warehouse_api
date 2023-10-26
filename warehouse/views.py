@@ -1,4 +1,4 @@
-from rest_framework import mixins, viewsets
+from rest_framework import viewsets
 
 from warehouse.models import Product
 from warehouse.serializers import ProductSerializer
